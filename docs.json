@@ -3,33 +3,47 @@
   "theme": "mint",
   "name": "Mint Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0E7C86",
+    "light": "#25abc9",
+    "dark": "#9d27af"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Docs",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Getting started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "get-started/overview",
+              {
+                "group": "Setting up a new project",
+                "pages": [
+                  "get-started/setup-entirius/index",
+                  "get-started/setup-entirius/shop-b2b",
+                  "get-started/setup-entirius/example-1",
+                  "get-started/setup-entirius/example-2"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Backend",
+        "groups": [
+          {
+            "group": "Backend",
+            "pages": [
+              "backend/index",
+              "backend/modules/index"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Modules",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "backend/modules/entirius-pim/index"
             ]
           }
         ]
@@ -65,13 +79,7 @@
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Discord Community",
-          "href": "https://discord.com/invite/3XFf78nAx5",
-          "icon": "discord"
-        }
-      ]
+      "anchors": []
     }
   },
   "logo": {
@@ -81,14 +89,18 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "GitHub",
+        "href": "https://github.com/dashboard"
+      },
+      {
+        "label": "Discord",
+        "href": "https://discord.gg/PMFaZ5CtH2"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Blog",
+      "href": "https://www.entirius.com/blog"
     }
   },
   "footer": {

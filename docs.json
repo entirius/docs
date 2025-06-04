@@ -43,6 +43,7 @@
           {
             "group": "Modules",
             "pages": [
+              "backend/modules/entirius-config/index",
               "backend/modules/entirius-pim/index"
             ]
           }

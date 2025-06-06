@@ -21,9 +21,8 @@
                 "group": "Setting up a new project",
                 "pages": [
                   "get-started/setup-entirius/index",
-                  "get-started/setup-entirius/shop-b2b",
-                  "get-started/setup-entirius/example-1",
-                  "get-started/setup-entirius/example-2"
+                  "get-started/setup-entirius/pim-mvp",
+                  "get-started/setup-entirius/example-shop-b2b"
                 ]
               }
             ]
@@ -74,7 +73,7 @@
         "groups": [
           {
             "group": "Changelog",
-            "pages": ["changelog/changelog"]
+            "pages": ["changelog/0.1"]
           }
         ]
       }
@@ -91,7 +90,7 @@
     "links": [
       {
         "label": "GitHub",
-        "href": "https://github.com/dashboard"
+        "href": "https://github.com/entirius"
       },
       {
         "label": "Discord",

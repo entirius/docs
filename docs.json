@@ -21,7 +21,7 @@
                 "group": "Setting up a new project",
                 "pages": [
                   "get-started/setup-entirius/index",
-                  "get-started/setup-entirius/pim-mvp",
+                  "get-started/setup-entirius/entirius-mvp",
                   "get-started/setup-entirius/example-shop-b2b"
                 ]
               }
@@ -30,20 +30,27 @@
         ]
       },
       {
-        "tab": "Backend",
+        "tab": "Development",
         "groups": [
           {
-            "group": "Backend",
+            "group": "Development",
             "pages": [
-              "backend/index",
-              "backend/modules/index"
+              "development/index"
+            ]
+          },
+          {
+            "group": "Services",
+            "pages": [
+              "development/services/overview",
+              "development/services/entirius-backend-mvp/index"
             ]
           },
           {
             "group": "Modules",
             "pages": [
-              "backend/modules/entirius-config/index",
-              "backend/modules/entirius-pim/index"
+              "development/modules/overview",
+              "development/modules/entirius-config/index",
+              "development/modules/entirius-pim/index"
             ]
           }
         ]

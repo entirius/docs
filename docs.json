@@ -14,13 +14,11 @@
         "groups": [{
           "group": "Getting started",
           "pages": [
-            "get-started/overview",
+            "get-started/index",
             {
               "group": "Setting up a new project",
               "pages": [
-                "get-started/setup-entirius/index",
-                "get-started/setup-entirius/entirius-mvp",
-                "get-started/setup-entirius/entirius-shop-b2b"
+                "get-started/setup-entirius/onepager-mvp"
               ]
             }
           ]

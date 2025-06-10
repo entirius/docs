@@ -3,8 +3,8 @@
   "theme": "mint",
   "name": "Entirius",
   "colors": {
-    "primary": "#0E7C86",
-    "light": "#00ACC1",
+    "primary": "#00ACC1",
+    "light": "#00E5FF",
     "dark": "#263238"
   },
   "favicon": "/logo/entirius-enzo.svg",

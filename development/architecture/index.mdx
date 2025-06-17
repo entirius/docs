@@ -1,0 +1,72 @@
+---
+title: "Architecture"
+description: "Entirius system architecture documentation"
+---
+
+# Entirius Architecture
+
+This section contains documentation of the Entirius system architecture, including Architecture Decision Records (ADRs) and general design principles.
+
+## Architecture Decision Records (ADR)
+
+ADRs are documents describing key architectural decisions made in the project. Each ADR contains:
+
+- **Context** - situation requiring a decision
+- **Considered options** - alternative solutions
+- **Decision** - chosen solution with rationale
+- **Consequences** - effects of the decision made
+
+### How to create ADRs
+
+1. Copy the [ADR template](./adr-template)
+2. Assign the next number (ADR-001, ADR-002, etc.)
+3. Fill in all sections
+4. Conduct team review
+5. Update status to "Accepted"
+
+### ADR List
+
+| Number | Title | Status | Date |
+|--------|-------|--------|------|
+| [Template](./adr-template) | ADR Template | - | - |
+
+*List will be updated as new ADRs are added*
+
+## Architectural Principles
+
+### General principles
+- **Modularity** - system consists of independent modules
+- **Scalability** - architecture supports load growth
+- **Maintainability** - code is easy to maintain and develop
+- **Security First** - security is a priority
+
+### Architectural patterns
+- **Microservices** - decomposition into small, independent services
+- **API-First** - all components communicate through APIs
+- **Event-Driven** - asynchronous communication through events
+- **CQRS** - separation of read and write operations
+
+## Architecture Diagrams
+
+### High-level Architecture
+![Entirius Architecture Overview](/images/entirius-base-big-picture.drawio.svg)
+
+### MVP Architecture
+![Entirius MVP Architecture](/images/entirius-base-MVP.drawio.svg)
+
+## Technologies
+
+### Backend
+- **Python 3** - primary programming language
+- **PostgreSQL** - database
+- **FastAPI** - API framework
+
+### Frontend
+- **React** - UI framework
+- **TypeScript** - programming language
+- **Next.js** - full-stack framework
+
+### Infrastructure
+- **Docker** - containerization
+- **Kubernetes** - orchestration
+- **CI/CD** - deployment automation

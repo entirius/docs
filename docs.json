@@ -46,6 +46,13 @@
               "development/modules/entirius-config/index",
               "development/modules/entirius-pim/index"
             ]
+          },
+          {
+            "group": "Architecture",
+            "pages": [
+              "development/architecture/index",
+              "development/architecture/adr-template"
+            ]
           }
         ]
       },

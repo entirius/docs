@@ -51,7 +51,14 @@
             "group": "Architecture",
             "pages": [
               "development/architecture/index",
-              "development/architecture/adr-template"
+              {
+                "group": "ADR",
+                "pages": [
+                  "development/architecture/adr/index",
+                  "development/architecture/adr/adr-001-modular-monolith",
+                  "development/architecture/adr/adr-template"
+                ]
+              }
             ]
           }
         ]

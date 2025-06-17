@@ -9,28 +9,9 @@ This section contains documentation of the Entirius system architecture, includi
 
 ## Architecture Decision Records (ADR)
 
-ADRs are documents describing key architectural decisions made in the project. Each ADR contains:
+Architecture Decision Records document key architectural decisions made in the Entirius project. They provide context, rationale, and consequences for important technical choices.
 
-- **Context** - situation requiring a decision
-- **Considered options** - alternative solutions
-- **Decision** - chosen solution with rationale
-- **Consequences** - effects of the decision made
-
-### How to create ADRs
-
-1. Copy the [ADR template](./adr-template)
-2. Assign the next number (ADR-001, ADR-002, etc.)
-3. Fill in all sections
-4. Conduct team review
-5. Update status to "Accepted"
-
-### ADR List
-
-| Number | Title | Status | Date |
-|--------|-------|--------|------|
-| [Template](./adr-template) | ADR Template | - | - |
-
-*List will be updated as new ADRs are added*
+For detailed information about ADRs, including templates and processes, see the [ADR section](/development/architecture/adr).
 
 ## Architectural Principles
 
@@ -41,10 +22,9 @@ ADRs are documents describing key architectural decisions made in the project. E
 - **Security First** - security is a priority
 
 ### Architectural patterns
-- **Microservices** - decomposition into small, independent services
-- **API-First** - all components communicate through APIs
+- **Modular Monolith** - single deployable unit with well-defined internal modules
 - **Event-Driven** - asynchronous communication through events
-- **CQRS** - separation of read and write operations
+- **API** - all components communicate through APIs
 
 ## Architecture Diagrams
 

@@ -1,0 +1,156 @@
+---
+title: "ADR-002: OpenAPI and Django Rest Framework"
+description: "Decision to use OpenAPI specification with Django Rest Framework for API development"
+---
+
+# ADR-002: OpenAPI and Django Rest Framework
+
+## Status
+**Status**: Accepted  
+**Date**: 2025-06-23  
+**Authors**: Development Team  
+**Reviewers**: -
+
+## Context
+
+Entirius backend requires a robust API framework to serve the e-commerce platform's functionality. The system needs to:
+- Provide RESTful APIs for frontend applications and external integrations
+- Maintain comprehensive API documentation
+- Support API versioning and evolution
+- Enable automated testing and validation
+- Integrate seamlessly with the Django-based modular monolith architecture
+
+Key technical requirements:
+- Django as the primary backend api framework (aligned with ADR-001)
+- Python 3 ecosystem compatibility
+- PostgreSQL database integration
+- Auto-generated API documentation
+- API schema validation
+- Support for authentication and permissions
+
+## Considered Options
+
+### Option 1: Django Rest Framework (DRF) with OpenAPI
+- **Description**: Use Django Rest Framework as the API framework with OpenAPI 3.0 specification for documentation
+- **Pros**: 
+  - Native Django integration
+  - Mature ecosystem with extensive community support
+  - Built-in serialization, authentication, and permissions
+  - Auto-generated OpenAPI schema via drf-spectacular
+  - Excellent documentation and learning resources
+  - Supports ViewSets, Generic Views, and custom API views
+  - Built-in browsable API for development
+- **Cons**:
+  - Django-specific, not framework agnostic
+  - Some learning curve for OpenAPI schema customization
+  - Additional dependency for OpenAPI generation
+- **Impact on system**: Seamless integration with Django monolith, standardized API documentation
+
+### Option 2: FastAPI
+- **Description**: Use FastAPI framework with automatic OpenAPI generation
+- **Pros**: 
+  - Native OpenAPI 3.0 support
+  - Automatic API documentation
+  - High performance (async support)
+  - Modern Python type hints integration
+  - Built-in data validation
+- **Cons**:
+  - Requires separate framework alongside Django
+  - Additional complexity in modular monolith
+  - Different ORM integration patterns
+  - Less mature Django ecosystem integration
+- **Impact on system**: Would require dual framework approach, complicating the monolith architecture
+
+### Option 3: Django with Manual API Documentation
+- **Description**: Build REST APIs using Django views with manually maintained API documentation
+- **Pros**: 
+  - Full control over API design
+  - No additional dependencies
+  - Simple Django integration
+- **Cons**:
+  - Manual documentation maintenance overhead
+  - No automatic schema validation
+  - Prone to documentation drift
+  - Limited API tooling support
+  - No standardized API specification
+- **Impact on system**: Higher maintenance burden, potential documentation inconsistencies
+
+## Decision
+
+**Chosen option**: Django Rest Framework with OpenAPI
+
+**Rationale**: 
+Django Rest Framework with OpenAPI specification is the optimal choice because:
+
+- **Architecture alignment**: Perfect fit with Django-based modular monolith (ADR-001)
+- **Ecosystem maturity**: Proven solution with extensive community and corporate adoption
+- **Documentation automation**: OpenAPI schema generation eliminates manual documentation maintenance
+- **Developer experience**: Browsable API and comprehensive tooling improve development velocity
+- **API standardization**: OpenAPI 3.0 provides industry-standard API specification
+- **Integration capabilities**: Native Django integration supports existing authentication and ORM patterns
+- **Future-proofing**: OpenAPI enables API-first development and external tool integration
+- **Testing support**: Schema-driven testing and validation capabilities
+
+## Consequences
+
+### Positive
+- **Standardized API design** - OpenAPI schema enforces consistent API patterns
+- **Automated documentation** - Always up-to-date API documentation with examples
+- **Enhanced developer experience** - Browsable API for development and testing
+- **Better API governance** - Schema validation prevents API contract violations
+- **External tool integration** - OpenAPI enables code generation and testing tools
+- **Client SDK generation** - Automatic client library generation for various languages
+- **API versioning support** - Built-in patterns for API evolution
+
+### Negative
+- **Additional dependency** - Requires drf-spectacular or similar for OpenAPI generation
+- **Learning curve** - Team needs to understand DRF patterns and OpenAPI customization
+- **Schema maintenance** - OpenAPI customizations require ongoing attention
+- **Performance overhead** - Serialization layer adds some computational cost
+
+### Neutral
+- **Django ecosystem lock-in** - Reinforces Django choice but aligns with architecture decision
+- **API-first mindset** - Encourages thinking about API design before implementation
+
+## Implementation Plan
+
+1. **Phase 1: Core Setup** (Week 1)
+   - Install Django Rest Framework and drf-spectacular
+   - Configure basic OpenAPI schema generation
+   - Set up API routing structure
+   - Implement basic authentication
+
+2. **Phase 2: API Development** (Week 2-3)
+   - Create serializers for core data models
+   - Implement ViewSets for CRUD operations
+   - Add custom API endpoints for business logic
+   - Configure permissions and authentication
+
+3. **Phase 3: Documentation & Testing** (Week 4)
+   - Customize OpenAPI schema with detailed descriptions
+   - Add API examples and response schemas
+   - Integrate API testing with existing test suite
+   - Deploy documentation to development environment
+
+## Success Metrics
+
+- **API coverage**: 100% of business functionality exposed via documented APIs
+- **Documentation accuracy**: Zero discrepancies between API behavior and OpenAPI schema
+- **Developer adoption**: Frontend developers can build features using only API documentation
+- **Response times**: API endpoints maintain sub-200ms response times for standard requests
+- **Error handling**: Consistent error response format across all endpoints
+
+## Related ADRs
+
+- [ADR-001](./adr-001-modular-monolith): Aligns with modular monolith architecture decision
+
+## References
+
+- [Django Rest Framework Documentation](https://www.django-rest-framework.org/)
+- [OpenAPI 3.0 Specification](https://swagger.io/specification/)
+- [drf-spectacular Documentation](https://drf-spectacular.readthedocs.io/)
+- [API Design Best Practices](https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design)
+
+---
+
+*This ADR establishes the API development foundation for Entirius. All API development should follow DRF patterns and maintain OpenAPI schema accuracy.*

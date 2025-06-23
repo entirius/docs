@@ -58,6 +58,7 @@
                   "development/architecture/adr/adr-001-modular-monolith",
                   "development/architecture/adr/adr-002-openapi-django-rest-framework",
                   "development/architecture/adr/adr-003-react-nextjs-frontend",
+                  "development/architecture/adr/adr-004-mozilla-public-license",
                   "development/architecture/adr/adr-template"
                 ]
               }

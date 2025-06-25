@@ -1,10 +1,10 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "Entirius Product API",
+    "description": "E-commerce Product Management API with Pydantic validation and Django Rest Framework",
     "license": {
-      "name": "MIT"
+      "name": "Mozilla Public License 2.0"
     },
     "version": "1.0.0"
   },
@@ -19,36 +19,55 @@
     }
   ],
   "paths": {
-    "/plants": {
+    "/products": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "operationId": "list_products",
+        "summary": "List all products",
+        "description": "Retrieve a list of all products with optional filtering",
         "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter by product category",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "in_stock",
+            "in": "query",
+            "description": "Filter by stock availability",
+            "schema": {
+              "type": "boolean"
+            }
+          },
           {
             "name": "limit",
             "in": "query",
             "description": "The maximum number of results to return",
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "default": 20
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Product list response",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Plant"
+                    "$ref": "#/components/schemas/Product"
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Unexpected error",
+            "description": "Bad request",
             "content": {
               "application/json": {
                 "schema": {
@@ -60,31 +79,33 @@
         }
       },
       "post": {
-        "description": "Creates a new plant in the store",
+        "operationId": "create_product",
+        "summary": "Create a new product",
+        "description": "Create a new product with Pydantic validation",
         "requestBody": {
-          "description": "Plant to add to the store",
+          "description": "Product data to create",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/ProductCreate"
               }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "plant response",
+          "201": {
+            "description": "Product created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "$ref": "#/components/schemas/Product"
                 }
               }
             }
           },
           "400": {
-            "description": "unexpected error",
+            "description": "Validation error",
             "content": {
               "application/json": {
                 "schema": {
@@ -96,14 +117,175 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
+    "/products/{id}": {
+      "get": {
+        "operationId": "retrieve_product",
+        "summary": "Get product by ID",
+        "description": "Retrieve a specific product by its ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "ID of plant to delete",
+            "description": "Product ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "update_product",
+        "summary": "Update product",
+        "description": "Update an existing product completely",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated product data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Product updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "partial_update_product",
+        "summary": "Partially update product",
+        "description": "Partially update an existing product",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Partial product data to update",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Product updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete_product",
+        "summary": "Delete product",
+        "description": "Delete a product by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product ID to delete",
             "required": true,
             "schema": {
               "type": "integer",
@@ -113,15 +295,47 @@
         ],
         "responses": {
           "204": {
-            "description": "Plant deleted",
-            "content": {}
+            "description": "Product deleted successfully"
           },
-          "400": {
-            "description": "unexpected error",
+          "404": {
+            "description": "Product not found",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/low_stock": {
+      "get": {
+        "operationId": "get_low_stock_products",
+        "summary": "Get low stock products",
+        "description": "Retrieve products with low stock quantity",
+        "parameters": [
+          {
+            "name": "threshold",
+            "in": "query",
+            "description": "Stock quantity threshold (default: 10)",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Low stock products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
                 }
               }
             }
@@ -154,55 +368,183 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "Product": {
         "type": "object",
+        "required": [
+          "id",
+          "name",
+          "description",
+          "price",
+          "sku",
+          "category",
+          "in_stock",
+          "stock_quantity",
+          "created_at",
+          "updated_at"
+        ],
         "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unique identifier for the product"
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Product name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Product description"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0.01,
+            "description": "Product price"
+          },
+          "sku": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Stock Keeping Unit (SKU)"
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Product category"
+          },
+          "in_stock": {
+            "type": "boolean",
+            "description": "Whether the product is in stock"
+          },
+          "stock_quantity": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Available stock quantity"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
           }
         }
       },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+      "ProductCreate": {
+        "type": "object",
+        "required": [
+          "name",
+          "description",
+          "price",
+          "sku",
+          "category",
+          "stock_quantity"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Product name"
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+          "description": {
+            "type": "string",
+            "description": "Product description"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0.01,
+            "description": "Product price"
+          },
+          "sku": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Stock Keeping Unit (SKU)"
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Product category"
+          },
+          "in_stock": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether the product is in stock"
+          },
+          "stock_quantity": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Available stock quantity"
           }
-        ]
+        }
+      },
+      "ProductUpdate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Product name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Product description"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal",
+            "minimum": 0.01,
+            "description": "Product price"
+          },
+          "sku": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Stock Keeping Unit (SKU)"
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Product category"
+          },
+          "in_stock": {
+            "type": "boolean",
+            "description": "Whether the product is in stock"
+          },
+          "stock_quantity": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Available stock quantity"
+          }
+        }
       },
       "Error": {
+        "type": "object",
         "required": [
           "error",
           "message"
         ],
-        "type": "object",
         "properties": {
           "error": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Error code"
           },
           "message": {
-            "type": "string"
+            "type": "string",
+            "description": "Error message"
           }
         }
       }

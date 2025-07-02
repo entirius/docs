@@ -55,7 +55,7 @@ The site is organized into 4 main tabs:
 
 ## Key Development Notes
 
-- The site focuses on documenting a modular e-commerce platform with services like `entirius-backend-mvp` and modules like `entirius-config` and `entirius-pim`
+- The site focuses on documenting a modular e-commerce platform with services like `entirius-backend` and modules like `entirius-config` and `entirius-pim`
 - Navigation structure is defined entirely in `docs.json` - adding new pages requires updating this configuration
 - The site serves both technical developers and business users, with content structured accordingly
 - Custom theming maintains Entirius brand identity while leveraging Mintlify's built-in components
@@ -92,3 +92,13 @@ Based on architectural decisions, Entirius uses:
 - **GitHub** for source code management, issue tracking, and CI/CD
 - **Mozilla Public License 2.0** for open-source distribution
 - **Mintlify** for technical documentation platform
+
+
+# Development local environment
+
+Below are the code repositories on which the Development is carried out with the use of a pycharm in which Claude can change on the local disk.
+
+- Entirius Backend: ../services/entirius-backend/
+- Entirius PIM: ../modules/entirius-pim/
+
+

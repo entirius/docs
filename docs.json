@@ -36,7 +36,7 @@
             "group": "Services",
             "pages": [
               "development/services/overview",
-              "development/services/entirius-backend-mvp/index"
+              "development/services/entirius-backend/index"
             ]
           },
           {

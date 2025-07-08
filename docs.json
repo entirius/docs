@@ -61,6 +61,7 @@
                   "development/architecture/adr/adr-004-mozilla-public-license",
                   "development/architecture/adr/adr-005-github-code-management",
                   "development/architecture/adr/adr-006-mintlify-documentation-platform",
+                  "development/architecture/adr/adr-007-uv-python-package-manager",
                   "development/architecture/adr/adr-template"
                 ]
               }

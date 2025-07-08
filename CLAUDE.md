@@ -8,7 +8,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Documentation is written in English.
 Links are Mintlify specific, check if relative links work, if not, use Absolute links.
 
-Use full pahts in links ex; 
+Use full pahts in links ex;
+
+MDX documents should follow Mintlify format guidelines:
+- Do not repeat page titles in H1 headers within the document (Mintlify displays the title from docs.json)
+- Start documents with H2 headers as the primary section headings
+- Use consistent heading hierarchy without skipping levels 
 
 ## Development Commands
 

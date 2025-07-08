@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap');
+
+
+
 :root {
   /* Entirius Brand Colors - From Styleguide */
   --accent-premium: #00E5FF;
@@ -20,8 +24,37 @@
   
   /* Dark Theme Support */
   --theme-bg-secondary: #12141A;
-  --theme-bg-tertiary: #1A1C25;
+  --theme-bg-tertiary: #12141A;
+  --background-dark: 18 20 26;
   --theme-border: rgba(255, 255, 255, 0.08);
+
+  /* Custom colors */
+  --text-basic-100: #0A0A0F;
+  --text-basic-200: #12141A;
+  --text-basic-300: #1A1C25;
+  --text-basic-400: #22242E;
+  --text-basic-500: #353843;
+  --text-basic-600: #484B57;
+  --text-basic-700: #6B6B7C;
+  --text-basic-800: #9A9CAA;
+  --text-basic-900: #C8CAD4;
+  --text-basic-950: #EBEDF2;
+}
+
+
+body, html, #__next, .mint-root, .markdown, .prose, p, h1, h2, h3, h4, h5, h6, li, td, th,div,a {
+  font-family: 'Readex Pro', sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+}
+
+.dark {
+  p,h1,h2,h3,h4,h5,h6,li,td,th,div,a{
+  color: var(--text-basic-900) !important;
+}}
+
+b,strong{
+  font-weight: bolder !important;
 }
 
 /* Light Theme Adjustments */
@@ -32,7 +65,7 @@
 }
 
 /* Subtle Background Pattern */
-body::before {
+/* body::before {
   content: '';
   position: fixed;
   top: 0;
@@ -44,12 +77,12 @@ body::before {
     radial-gradient(circle at 80% 80%, rgba(69, 90, 100, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: 1;
-}
+} */
 
 /* Enhanced Navigation */
 #navbar {
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--theme-border);
+  backdrop-filter: blur(1.25rem);
+  border-bottom: .06rem solid var(--theme-border);
 }
 
 /* Logo Gradient Enhancement */
@@ -72,10 +105,10 @@ body::before {
 .nav-tabs-item::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -0.13rem;
   left: 0;
   right: 0;
-  height: 2px;
+  height: .13rem;
   background: var(--titanium-gradient);
   transform: scaleX(0);
   transition: transform 0.3s ease;
@@ -99,8 +132,8 @@ body::before {
 #sidebar-group a[class*="text-primary"] {
   color: var(--accent-cyan) !important;
   background: rgba(0, 172, 193, 0.1);
-  border-left: 3px solid var(--accent-cyan);
-  padding-left: calc(1rem - 3px);
+  border-left: .19rem solid var(--accent-cyan);
+  padding-left: calc(1rem - .19rem);
   font-weight: 600;
 }
 
@@ -112,8 +145,8 @@ body::before {
 /* Enhanced Code Blocks */
 pre {
   background: var(--theme-bg-tertiary);
-  border: 1px solid var(--theme-border);
-  border-radius: 8px;
+  border: .06rem solid var(--theme-border);
+  border-radius: .5rem;
   position: relative;
 }
 
@@ -122,27 +155,27 @@ pre::before {
   position: absolute;
   top: 0;
   left: 0;
-  width: 4px;
+  width: .25rem;
   height: 100%;
   background: var(--titanium-gradient);
-  border-radius: 8px 0 0 8px;
+  border-radius: .5rem 0 0 .5rem;
 }
 
 :not(pre) > code {
   background: var(--theme-bg-tertiary);
   color: var(--accent-cyan);
   padding: 0.2rem 0.5rem;
-  border-radius: 4px;
+  border-radius: .25rem;
   font-size: 0.9em;
 }
 
 /* Enhanced Tables */
 table {
   background: var(--theme-bg-secondary);
-  border: 1px solid var(--theme-border);
-  border-radius: 12px;
+  border: .06rem solid var(--theme-border);
+  border-radius: .75rem;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 .13rem .5rem rgba(0, 0, 0, 0.1);
 }
 
 th {
@@ -155,13 +188,13 @@ th {
 
 tbody tr:hover {
   background: var(--theme-bg-tertiary);
-  transform: translateY(-1px);
+  transform: translateY(-0.06rem);
 }
 
 /* Premium CTA Buttons */
 .button,
 [class*="button"] {
-  border-radius: 8px;
+  border-radius: .5rem;
   font-weight: 600;
   transition: all 0.3s ease;
 }
@@ -169,19 +202,19 @@ tbody tr:hover {
 .button-primary {
   background: var(--cta-gradient);
   color: white;
-  box-shadow: 0 2px 8px rgba(0, 172, 193, 0.2);
+  box-shadow: 0 .13rem .5rem rgba(0, 172, 193, 0.2);
 }
 
 .button-primary:hover {
-  box-shadow: 0 4px 16px rgba(0, 172, 193, 0.3);
-  transform: translateY(-1px);
+  box-shadow: 0 .25rem 1rem rgba(0, 172, 193, 0.3);
+  transform: translateY(-0.06rem);
 }
 
 /* API Method Badges */
 .api-method {
   display: inline-block;
   padding: 0.375rem 1rem;
-  border-radius: 6px;
+  border-radius: .38rem;
   font-weight: 600;
   font-size: 0.875rem;
   margin-right: 1rem;
@@ -210,16 +243,16 @@ tbody tr:hover {
 /* Enhanced Cards */
 .card {
   background: var(--theme-bg-secondary);
-  border: 1px solid var(--theme-border);
-  border-radius: 12px;
+  border: .06rem solid var(--theme-border);
+  border-radius: .75rem;
   padding: 2rem;
   transition: all 0.3s ease;
 }
 
 .card:hover {
   border-color: var(--accent-pink);
-  box-shadow: 0 8px 24px rgba(233, 30, 99, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 .5rem 1.5rem rgba(233, 30, 99, 0.1);
+  transform: translateY(-0.13rem);
 }
 
 /* Focus States */
@@ -227,7 +260,7 @@ input:focus,
 textarea:focus,
 select:focus {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(0, 172, 193, 0.15);
+  box-shadow: 0 0 0 .19rem rgba(0, 172, 193, 0.15);
 }
 
 /* Status Pills and Badges */
@@ -235,7 +268,7 @@ select:focus {
   padding: 0.375rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: .38rem;
   background: var(--cta-gradient);
   color: white;
 }
@@ -245,7 +278,7 @@ select:focus {
 .badge-danger { background: var(--accent-pink); }
 
 /* Mobile Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .card {
     padding: 1.5rem;
   }
@@ -268,5 +301,22 @@ a:hover {
 /* Search input enhancement */
 input[type="search"]:focus {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(0, 172, 193, 0.15);
+  box-shadow: 0 0 0 .19rem rgba(0, 172, 193, 0.15);
+}
+
+#navbar{
+  .nav-logo{
+    @media (min-width: 48rem) {
+max-width: 10rem;
+width: 100%;
+height: auto;
+    }
+  }
+  #search-bar-entry{
+    border-radius: 8px;
+  }
+
+  /* .navbar-link{
+
+  } */
 }
